@@ -94,4 +94,3 @@ def main():
         if 'conn' in locals():
             conn.close()
             logger.info("Database connectuon closed") 
-
