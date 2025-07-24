@@ -1,5 +1,11 @@
 import requests
 import logging
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+api_key = os.getenv("WEATHER_API_KEY")
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -12,8 +18,6 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-
-api_key = "bc031699973a1211f647846131f18c33"
 api_url = f"http://api.weatherstack.com/current?access_key={api_key}&query=New York"
     
 def fetch_data():
