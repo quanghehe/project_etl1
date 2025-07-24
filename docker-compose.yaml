@@ -26,7 +26,7 @@ services:
     volumes:
       - ./airflow/dags:/opt/airflow/dags
     depends_on:
-      - databaseg
+      - database
     command: >
       bash -c "airflow db migrate && airflow standalone"
 
