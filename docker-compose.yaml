@@ -28,6 +28,22 @@ services:
       bash -c "airflow db migrate && airflow standalone"
     networks:
       - my-networks
+  dbt:
+    container_name: dbt_container
+    image: ghcr.io/dbt-labs/dbt-postgres:1.9.latest
+    volumes:
+      - ./dbt/my_project:/usr/app
+      - ./dbt/profiles.yml:/root/.dbt/profiles.yml
+    working_dir: /usr/app
+    environment:
+      DBT_PROFILES_DIR: /root/.dbt
+    depends_on:
+      - database
+    networks:
+      - my-networks
+    command: run
+
+
 networks:
   my-networks:
     driver: bridge

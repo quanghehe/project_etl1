@@ -3,3 +3,6 @@ weather_api.log
 venv
 __pycache__
 postgres
+*.log
+dbt.log
+logs/
