@@ -1,0 +1,12 @@
+my_project:
+  outputs:
+    wt:
+      dbname: weather
+      host: database
+      pass: q
+      port: 5432
+      schema: wt
+      threads: 1
+      type: postgres
+      user: quang
+  target: wt

@@ -8,7 +8,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ./postgres/data:/var/lib/postgres/data
+      - ./postgres/data:/var/lib/postgresql/data
       - ./postgres/airflow_init.sql:/docker-entrypoint-initdb.d/airflow_init.sql 
     networks:
       - my-networks
@@ -21,10 +21,28 @@ services:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@database:5432/airflow_db
     volumes:
       - ./airflow/dags:/opt/airflow/dags
+      - ./api_request:/opt/airflow/api_request
     depends_on:
       - database
     command: >
       bash -c "airflow db migrate && airflow standalone"
+    networks:
+      - my-networks
+  dbt:
+    container_name: dbt_container
+    image: ghcr.io/dbt-labs/dbt-postgres:1.9.latest
+    volumes:
+      - ./dbt/my_project:/usr/app
+      - ./dbt/profiles.yml:/root/.dbt/profiles.yml
+    working_dir: /usr/app
+    environment:
+      DBT_PROFILES_DIR: /root/.dbt
+    depends_on:
+      - database
+    networks:
+      - my-networks
+    command: run
+
 
 networks:
   my-networks:
