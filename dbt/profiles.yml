@@ -1,12 +1,12 @@
 my_project:
   outputs:
-    dev:
+    wt:
       dbname: weather
       host: database
       pass: q
       port: 5432
-      schema: dev
+      schema: wt
       threads: 1
       type: postgres
       user: quang
-  target: dev
+  target: wt
