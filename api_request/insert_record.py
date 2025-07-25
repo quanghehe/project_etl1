@@ -84,8 +84,8 @@ def insert_record(conn , data):
 
 def main():
     try:
-        # data = mock_fetch_data()
-        data = fetch_data()
+        data = mock_fetch_data()
+        # data = fetch_data()
         conn = connect_to_db()
         create_table(conn)
         insert_record(conn,data)

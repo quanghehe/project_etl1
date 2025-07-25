@@ -9,13 +9,13 @@ from insert_record import main
 default_args = {
     'description': 'A dag to orchestrator data',
     'start_date' : datetime(2025,7,20),
-    'catchup': False
 }
 
 dag = DAG(
     dag_id = 'weather_id_orchestator',
     default_args = default_args,
-    schedule = timedelta(minutes=5)
+    schedule=timedelta(minutes=10), 
+    catchup=False 
 )
 
 with dag:
